@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Deployment Successful</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            display: inline-block;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2e8b57;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EverElms Studio</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Deployment Successful!</h1>
-        <p>Your GitHub deployment is working.</p>
+  <!-- Top Section (combined header + hero) -->
+  <section id="top">
+    <div class="top-bar">
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#games">Games</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+
+    <!-- Brand: title only (tree logo removed) -->
+    <div class="brand">
+      <h1 class="studio-name gradient-text">EverElms Studio</h1>
+      <p class="tagline">Solo game development • Code • Art • Music</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="alt-bg">
+    <h2>About</h2>
+    <p>
+      EverElms Studio is a one-person indie game studio focused on learning,
+      creating, and sharing the process. Through devlogs, experiments, and playable projects,
+      the goal is to inspire and show what’s possible with code, art, and music.
+    </p>
+  </section>
+
+  <!-- Games -->
+  <section id="games">
+    <h2>Games & Projects</h2>
+    <div class="game-grid">
+      <div class="game-card">
+        <h3>Coming Soon</h3>
+        <p>Check back later for upcoming projects and devlog highlights.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="alt-bg">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:info@everelmstudio.com">info@everelmstudio.com</a></p>
+    <p>YouTube: <a href="#" target="_blank" rel="noopener">EverElms Studio Channel</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 EverElms Studio. All rights reserved.</p>
+  </footer>
 </body>
 </html>
