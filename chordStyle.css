@@ -1,0 +1,168 @@
+/* ===== Chord Arranger (scoped) ===== */
+.tool-chord {
+  /* Map tool vars to site palette (tweak anytime) */
+  --bg-top: var(--surface);
+  --bg-bot: var(--bg);
+  --panel: var(--near-black-blue);
+  --tile: rgba(255,255,255,0.06);
+  --grid: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.18);
+  --text: var(--frosted-white);
+  --muted: var(--bone);
+  --accent: var(--brand-2);
+  --accent-strong: var(--brand);
+  --playhead: #cce6ff;
+  --playing-bg: rgba(255,255,255,0.10);
+  --btn-bg: rgba(237,237,224,0.05);
+  --btn-bg2: rgba(237,237,224,0.03);
+  --btn-border: rgba(255,255,255,0.18);
+  --btn-hover: rgba(237,237,224,0.14);
+  --danger: #8d3a3a;
+  --danger2: #6b2c2c;
+  --danger-border: #a85858;
+
+  /* ensure tool takes full site container width */
+  width: 100%;
+  max-width: none;
+}
+
+/* make immediate children stretch the full container width */
+.tool-chord > * {
+  width: 100%;
+}
+
+/* in case any legacy wrapper inside the tool had a fixed max-width */
+.tool-chord .wrap,
+.tool-chord .inner,
+.tool-chord .container,
+.tool-chord .container-like {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* containment & base */
+.tool-chord * { box-sizing: border-box; }
+
+.tool-chord h1,
+.tool-chord h2 { margin: 0 0 0.75rem 0; text-align: center; letter-spacing: 0.02em; }
+
+/* Controls */
+.tool-chord .controls{
+  display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.6rem;align-items:center;justify-content:center
+}
+.tool-chord label{font-size:.95rem}
+
+/* Inputs/selects */
+.tool-chord select,
+.tool-chord input[type="number"]{
+  background: var(--tile);
+  color: var(--text);
+  border: 1px solid #ffffff22;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+}
+
+/* Fix native dropdown legibility (open popup + options) */
+.tool-chord select {
+  /* closed state can stay dark, but the popup will be light thanks to option rules */
+  /* If you prefer the closed control to be light as well, uncomment next two lines: */
+  /* background: var(--frosted-white); */
+  /* color: var(--near-black-blue); */
+}
+.tool-chord select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Most browsers honor these for the popup rows */
+.tool-chord select option {
+  background: var(--frosted-white) !important;
+  color: var(--near-black-blue) !important;
+}
+
+/* Buttons */
+.tool-chord button{
+  appearance:none;border:1px solid var(--btn-border);
+  background: linear-gradient(180deg, var(--btn-bg), var(--btn-bg2));
+  color: var(--text);
+  padding:.55rem .9rem;border-radius:10px;font-weight:600;letter-spacing:.02em;cursor:pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
+  box-shadow:0 2px 8px #00000040
+}
+.tool-chord button:hover{ transform:translateY(-1px); border-color:var(--accent); box-shadow:0 4px 14px #00000055 }
+.tool-chord button:active{ transform:translateY(0); box-shadow:0 2px 8px #00000040 }
+.tool-chord button:disabled{ opacity:.6; cursor:not-allowed }
+
+/* Emphasize Play */
+.tool-chord #play{ border-color:var(--accent-strong); box-shadow:0 2px 10px rgba(62,160,240,.35) }
+.tool-chord #play:hover{ background: linear-gradient(180deg, #274765, #223a56); border-color:var(--accent) }
+
+/* Emphasize Stop */
+.tool-chord #stop{ border-color:var(--danger-border); background: linear-gradient(180deg, var(--danger), var(--danger2)) }
+.tool-chord #stop:hover{ filter:brightness(1.05) }
+
+/* Small buttons */
+.tool-chord .btn-small{ padding:.25rem .45rem; font-size:.85rem; border-radius:7px }
+
+/* Panels styled like cards; stretch full width with no unintended side gutters */
+.tool-chord section{
+  background: var(--panel);
+  border: 1px solid #ffffff13;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Progressions grid */
+.tool-chord #progressions .prog-list{
+  display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:.75rem
+}
+@media (max-width: 860px){
+  .tool-chord #progressions .prog-list{ grid-template-columns:1fr }
+}
+.tool-chord .prog-card{
+  border:1px solid #ffffff22; background: var(--tile); border-radius:8px; padding:.9rem
+}
+.tool-chord .prog-name{ font-weight:800; text-align:center; margin-bottom:.25rem }
+.tool-chord .prog-row{
+  display:grid; grid-template-columns:1fr auto; gap:.5rem; padding:.4rem 0; border-top:1px dashed #ffffff1a
+}
+.tool-chord .prog-row:first-of-type{ border-top:none }
+.tool-chord .seq{ display:flex; flex-direction:column; line-height:1.2 }
+.tool-chord .seq .roman{ font-weight:700 }
+.tool-chord .seq .symbols{ color:var(--muted); font-size:.92rem }
+.tool-chord .prog-row button{ align-self:center }
+
+/* Palette */
+.tool-chord #palette .chords{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(110px, 1fr)); gap:.5rem
+}
+.tool-chord .tile{
+  border:1px solid #ffffff22; background: var(--tile); border-radius:6px; padding:.6rem .5rem; text-align:center;
+  cursor:pointer; user-select:none; transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease
+}
+.tool-chord .tile:hover{ transform:translateY(-1px); box-shadow:0 3px 10px #00000044 }
+.tool-chord .tile.selected{ border-color:var(--accent); box-shadow:0 0 0 2px #77bdf244 }
+.tool-chord .tile.now-playing{ border-color:var(--playhead); box-shadow:0 0 0 2px #cce6ff55 }
+.tool-chord .tile .roman{ font-weight:700; letter-spacing:.02em }
+.tool-chord .tile .symbol{ margin-top:.2rem; color:var(--muted); font-size:.95rem }
+
+/* Timeline */
+.tool-chord #timeline .grid{ display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:1rem; overflow:visible }
+.tool-chord .bar-wrap{ display:grid; grid-template-rows:auto auto; align-items:start; min-width:0 }
+.tool-chord .bar-header{ display:flex; align-items:center; justify-content:space-between; gap:.5rem; margin-bottom:.4rem }
+.tool-chord .bar-label{ font-size:.85rem; color:var(--muted) }
+.tool-chord .bar{ display:grid; grid-template-columns: repeat(4, minmax(60px, 1fr)); gap:.25rem }
+.tool-chord .slot{
+  border:1px solid var(--border); background: var(--grid);
+  min-width:60px; min-height:60px; display:flex; align-items:center; justify-content:center;
+  border-radius:6px; font-size:.95rem; color:var(--muted); user-select:none
+}
+.tool-chord .slot.filled{ color:var(--text) }
+.tool-chord .slot.playing{ outline:2px solid var(--playhead); background: var(--playing-bg); color:var(--text) }
+
+/* Transport */
+.tool-chord #transport .transport-row{
+  display:flex; justify-content:center; align-items:center; gap:.75rem
+}
+.tool-chord .met-toggle{ display:inline-flex; align-items:center; gap:.35rem; color:var(--muted); font-size:.95rem }

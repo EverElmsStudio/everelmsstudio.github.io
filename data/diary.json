@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "date": "2025-10-01",
+      "title": "Baby Steps",
+      "html": [
+        "<p>These first few weeks were an interesting experience. I was stressing about making progress but  am allowing myself to be distracted for a little bit.  It ahs been great! Straight up I am looking to leverage AI were I jusdge it to be an assstance to what I am doing and not a replacemtn.</p>",
+        "<p>Next: camera smoothing and a one-button dash.</p>"
+      ]
+    },
+    {
+      "date": "2025-09-26",
+      "title": "Tiny movement win",
+      "html": [
+        "<p>Got a basic player move loop working in Godot. Slopes are wobbly (hello jitter) but it’s progress.</p>",
+        "<p>Next: camera smoothing and a one-button dash.</p>"
+      ]
+    },
+    {
+      "date": "2025-09-25",
+      "title": "Blocking out a tileset",
+      "html": [
+        "<p>Sketched a super simple 16×16 tileset to test collisions and scale. Looks bland (by design) but helped dial movement speed.</p>",
+        "<p>Parking style tweaks for later—goal is momentum, not polish.</p>"
+      ]
+    }
+  ]
+}

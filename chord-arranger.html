@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Chord Arranger — EverElms Studio</title>
+  <meta name="description" content="Arrange chord progressions, audition them, and export MIDI. A free tool from EverElms Studio."/>
+  <link rel="icon" href="favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <!-- Site styles first -->
+  <link rel="stylesheet" href="style.css"/>
+  <!-- Tool styles (scoped) -->
+  <link rel="stylesheet" href="chordStyle.css"/>
+  <!-- Tone.js for playback -->
+  <script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <nav class="topbar__links" aria-label="Utility">
+        <span class="socials">
+          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+          <a class="icon" href="https://www.instagram.com/everelmsetudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        </span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="logo" src="media/NewLogoTree.png" alt="EverElms Studio logo" width="36" height="36"/>
+        <span class="wordmark">EverElms Studio</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#games">Games</a></li>
+          <li><a href="diary.html">Diary</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Page hero (site style) -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Chord Arranger</h1>
+        <p class="diary-intro">Arrange progressions, audition them, share a link, or export MIDI.</p>
+      </div>
+    </section>
+
+    <!-- Tool body (scoped under .tool-chord) -->
+    <section class="section">
+      <div class="container">
+        <div class="tool-chord">
+          <!-- Controls -->
+          <div class="controls" role="group" aria-label="Chord arranger controls">
+            <label>Key:
+              <select id="key">
+                <option value="C" selected>C</option>
+                <option value="G">G</option>
+                <option value="D">D</option>
+                <option value="A">A</option>
+                <option value="E">E</option>
+                <option value="B">B</option>
+                <option value="F#">F#</option>
+                <option value="C#">C#</option>
+                <option value="F">F</option>
+                <option value="Bb">Bb</option>
+                <option value="Eb">Eb</option>
+                <option value="Ab">Ab</option>
+                <option value="Db">Db</option>
+                <option value="Gb">Gb</option>
+                <option value="Cb">Cb</option>
+              </select>
+            </label>
+            <label>Mode:
+              <select id="mode">
+                <option value="major" selected>Major</option>
+                <option value="minor">Minor</option>
+              </select>
+            </label>
+            <label>Bars:
+              <select id="bars">
+                <option value="4" selected>4</option>
+                <option value="8">8</option>
+                <option value="16">16</option>
+              </select>
+            </label>
+            <label>Tempo:
+              <input type="number" id="tempo" value="90" min="40" max="200" /> BPM
+            </label>
+          </div>
+
+          <!-- Progressions -->
+          <section id="progressions">
+            <h2>Popular Progressions</h2>
+            <div class="prog-list"></div>
+          </section>
+
+          <!-- Palette -->
+          <section id="palette">
+            <h2>Chord Palette</h2>
+            <div class="chords"></div>
+          </section>
+
+          <!-- Timeline -->
+          <section id="timeline">
+            <h2>Timeline</h2>
+            <div class="grid"></div>
+          </section>
+
+          <!-- Transport -->
+          <section id="transport">
+            <div class="transport-row">
+              <button id="play" type="button">Play</button>
+              <button id="stop" type="button">Stop</button>
+              <button id="undo" type="button" title="Undo last add/fill">Undo</button>
+              <button id="resetGrid" type="button" title="Clear all placed chords">Reset Grid</button>
+              <label class="met-toggle">
+                <input id="metEnabled" type="checkbox" />
+                Metronome
+              </label>
+              <button id="copyLink" type="button" title="Copy a shareable URL">Copy Link</button>
+              <button id="exportMidi" type="button" title="Download .mid file">Export MIDI</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container ftr">
+      <p>&copy; <span id="year"></span> EverElms Studio</p>
+      <nav aria-label="Footer">
+        <a href="index.html#about">About</a>
+        <a href="index.html#games">Games</a>
+        <a href="index.html#contact">Contact</a>
+        <span class="footer-socials">
+          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+          <a class="icon" href="https://www.instagram.com/everelmsetudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        </span>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Your tool JS (unchanged logic) -->
+  <script src="script.js"></script>
+  <script src="chordApp.js"></script>
+</body>
+</html>

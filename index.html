@@ -1,63 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- EverElms Studio — Home -->
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EverElms Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>EverElms Studio — Solo Game Dev: Code • Art • Music</title>
+  <meta name="description" content="EverElms Studio is a one-person indie shop sharing the journey through code, art, music, and honest devlogs."/>
+  <link rel="canonical" href="https://www.everelmsstudio.com/"/>
+
+  <!-- Social preview -->
+  <meta property="og:title" content="EverElms Studio"/>
+  <meta property="og:description" content="Solo game dev in public—code, art, music, devlogs."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.everelmsstudio.com/"/>
+  <meta property="og:image" content="media/social-card.png"/>
+
+  <!-- Fonts + CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="favicon.ico"/>
 </head>
 <body>
-  <!-- Top Section (combined header + hero) -->
-  <section id="top">
-    <div class="top-bar">
-      <nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar__inner">
+      <nav class="topbar__links" aria-label="Utility">
+        <span class="socials">
+          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+          <a class="icon" href="https://www.instagram.com/everelmsetudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        </span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HEADER / NAV -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="logo" src="media/NewLogoTree.png" alt="EverElms Studio logo" width="36" height="36"/>
+        <span class="wordmark">EverElms Studio</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary">
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#games">Games</a></li>
+          <li><a href="diary.html">Diary</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
+  </header>
 
-    <!-- Brand: title only (tree logo removed) -->
-    <div class="brand">
-      <h1 class="studio-name gradient-text">EverElms Studio</h1>
-      <p class="tagline">Solo game development • Code • Art • Music</p>
-    </div>
-  </section>
+  <main id="main">
+    <!-- HERO BANNER (constrained to main body width) -->
+    <div class="hero-banner" role="img" aria-label="EverElms banner"></div>
 
-  <!-- About -->
-  <section id="about" class="alt-bg">
-    <h2>About</h2>
-    <p>
-      EverElms Studio is a one-person indie game studio focused on learning,
-      creating, and sharing the process. Through devlogs, experiments, and playable projects,
-      the goal is to inspire and show what’s possible with code, art, and music.
-    </p>
-  </section>
+    <!-- NOTE: No page-hero copy block per your request -->
 
-  <!-- Games -->
-  <section id="games">
-    <h2>Games & Projects</h2>
-    <div class="game-grid">
-      <div class="game-card">
-        <h3>Coming Soon</h3>
-        <p>Check back later for upcoming projects and devlog highlights.</p>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container grid cards" style="grid-template-columns:repeat(2,1fr)">
+        <article class="card card--glass">
+          <div class="card__body">
+            <h3>About</h3>
+            <p>EverElms Studio is a one-person indie shop documenting the messy path to shipping games: coding prototypes, sketching art, and composing simple loops. If you’re late to the party but still want to make things—this is for you.</p>
+            <ul class="checks">
+              <li>personal and transparent devlogs</li>
+              <li>Open progress: process &gt; polish</li>
+              <li>Small, frequent experiments</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card card--glass">
+          <div class="card__body">
+            <h3>Homegrown Tools</h3>
+            <p>Check out this selection of useful tools for solo game devs.</p>
+            <div class="card__actions">
+              <a class="btn" href="freetools.html">Free Tools</a>
+            </div>
+          </div>
+        </article>
       </div>
+    </section>
+
+    <!-- EXPERIMENTS -->
+    <section id="games" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Experiments &amp; Prototypes</h2>
+        </div>
+
+        <div class="grid cards">
+          <!-- Card 1: Latest YouTube Video -->
+          <article class="card card--glass card--yt" data-yt-id="VIDEO_ID_HERE">
+            <div class="thumb yt-tile" role="button" tabindex="0" aria-label="Play latest YouTube video">
+              <img class="yt-thumb" alt="Latest YouTube video thumbnail"/>
+              <span class="yt-play">Watch on YouTube</span>
+            </div>
+            <div class="card__body">
+              <h3>Latest Video</h3>
+              <p>From the channel. Click to play inline.</p>
+              <div class="card__actions">
+                <a class="btn btn--small" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Visual Art (thumb -> lightbox) -->
+          <article class="card card--glass card--art" data-art-full="media/Day4_Viking_Framed.png">
+            <div class="thumb">
+              <img class="art-thumb" src="media/Day4_Viking_Framed.png" alt="Recent visual study"/>
+            </div>
+            <div class="card__body">
+              <h3>Visual Art</h3>
+              <p class="muted">Click “View full” for the complete image.</p>
+              <div class="card__actions">
+                <button class="btn btn--small art-expand" type="button">View full</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Music (CSS faux visualizer + working play/pause) -->
+          <article class="card card--glass card--audio">
+            <div class="thumb audio-vis">
+              <div class="faux-vis" aria-hidden="true">
+                <div class="bars">
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+            <div class="card__body">
+              <h3>Music Cue</h3>
+              <p>Short loop with a lightweight visualizer.</p>
+              <div class="card__actions">
+                <button class="btn btn--small audio-toggle" type="button">Play</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <article class="card card--contact">
+          <h3>Contact</h3>
+          <p>Email: <a href="mailto:everelmsstudio@gmail.com">everelmsstudio@gmail.com</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" hidden>
+      <button class="lightbox__close" aria-label="Close image (Esc)">×</button>
+      <img class="lightbox__img" alt="Full-size artwork"/>
     </div>
-  </section>
 
-  <!-- Contact -->
-  <section id="contact" class="alt-bg">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:info@everelmstudio.com">info@everelmstudio.com</a></p>
-    <p>YouTube: <a href="#" target="_blank" rel="noopener">EverElms Studio Channel</a></p>
-  </section>
+    <!-- Hidden audio element for the Music Cue -->
+    <audio id="music-cue" preload="metadata" src="media/FirstSong.mp3"></audio>
+  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 EverElms Studio. All rights reserved.</p>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="ftr">
+      <p class="copyright">&copy; <span id="year"></span> EverElms Studio</p>
+      <nav aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+        <span class="footer-socials">
+          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+          <a class="icon" href="https://www.instagram.com/everelmsetudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        </span>
+      </nav>
+    </div>
   </footer>
+
+  <!-- Site scripts -->
+  <script src="script.js"></script>
+
+  <!-- YEAR + audio toggle inline -->
+  <script>
+    // Copyright year (runs even if script.js changes)
+    (function(){
+      var y=document.getElementById('year');
+      if(y){ y.textContent=new Date().getFullYear(); }
+    })();
+
+    // Music Cue play/pause
+    (function () {
+      const btn = document.querySelector('.audio-toggle');
+      const audio = document.getElementById('music-cue');
+      if (!btn || !audio) return;
+
+      btn.addEventListener('click', async () => {
+        try {
+          if (audio.paused) {
+            await audio.play();
+            btn.textContent = 'Pause';
+          } else {
+            audio.pause();
+            btn.textContent = 'Play';
+          }
+        } catch (e) {
+          console.warn('Audio playback failed:', e);
+        }
+      });
+      audio.addEventListener('ended', () => { btn.textContent = 'Play'; });
+    })();
+  </script>
 </body>
 </html>

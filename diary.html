@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Diary — EverElms Studio</title>
+  <meta name="description" content="EverElms Studio dev diary: notes, progress, and lessons from solo game development."/>
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <nav class="topbar__links" aria-label="Utility">
+        <span class="socials">
+          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+          <a class="icon" href="https://www.instagram.com/everelmsstudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        </span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img class="logo" src="media/NewLogoTree.png" alt="EverElms Studio logo" width="36" height="36"/>
+        <span class="wordmark">EverElms Studio</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#games">Games</a></li>
+          <li><a href="diary.html" aria-current="page">Diary</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Diary</h1>
+        <p class="diary-intro intro--narrow">
+          Notes and musings about game development, games, and resilience in the face of obstacles.
+          Basically brain dumps I feel like sharing.
+        </p>
+
+        <!-- ONLY the Back to home button goes here (centered) -->
+        <div class="cta-row cta-row--center">
+          <a class="btn btn--ghost" href="index.html">← Back to home</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Entries -->
+    <section class="section">
+      <div class="container">
+        <div class="entry-list" data-src="data/diary.json" data-initial="6"></div>
+
+        <!-- Load more stays below the entries -->
+        <div class="cta-row cta-row--center">
+          <button class="btn" id="load-more" hidden>Load more</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container ftr">
+      <p>&copy; <span id="year"></span> EverElms Studio</p>
+      <nav aria-label="Footer">
+        <a href="index.html#about">About</a>
+        <a href="index.html#games">Games</a>
+        <a href="index.html#contact">Contact</a>
+        <span class="footer-socials">
+          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+          <a class="icon" href="https://www.instagram.com/everelmsstudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        </span>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
