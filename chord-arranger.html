@@ -67,7 +67,7 @@
       <div class="container">
         <div class="tool-chord">
           <!-- Controls -->
-          <div class="controls" role="group" aria-label="Chord arranger controls">
+          <div class="controls wrap-row" role="group" aria-label="Chord arranger controls">
             <label>Key:
               <select id="key">
                 <option value="C" selected>C</option>
@@ -114,18 +114,18 @@
           <!-- Palette -->
           <section id="palette">
             <h2>Chord Palette</h2>
-            <div class="chords"></div>
+            <div class="chords auto-grid auto-grid--lg-4"></div>
           </section>
 
           <!-- Timeline -->
           <section id="timeline">
             <h2>Timeline</h2>
-            <div class="grid"></div>
+            <div class="grid scroll-x"></div>
           </section>
 
           <!-- Transport -->
           <section id="transport">
-            <div class="transport-row">
+            <div class="transport-row wrap-row">
               <button id="play" type="button">Play</button>
               <button id="stop" type="button">Stop</button>
               <button id="undo" type="button" title="Undo last add/fill">Undo</button>
