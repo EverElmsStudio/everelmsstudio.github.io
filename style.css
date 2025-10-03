@@ -361,3 +361,7 @@ a:focus,button:focus{outline:2px solid var(--ring);outline-offset:2px}
 /* Diary: keep hero intro a comfortable width */
 .page-hero .intro--narrow { max-width: 72ch; margin-inline: auto; }
 
+/* --- Mobile fix: stack home cards (override inline 2-col) --- */
+@media (max-width: 780px){
+  .cards { grid-template-columns: 1fr !important; } /* beats inline style */
+}
