@@ -73,15 +73,10 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
-/* Most browsers honor these for the popup rows */
-.tool-chord select option {
-  background: var(--frosted-white) !important;
-  color: var(--near-black-blue) !important;
-}
 
 /* Buttons */
 .tool-chord button{
-  appearance:none;border:1px solid var(--btn-border);
+  border:1px solid var(--btn-border);
   background: linear-gradient(180deg, var(--btn-bg), var(--btn-bg2));
   color: var(--text);
   padding:.55rem .9rem;border-radius:10px;font-weight:600;letter-spacing:.02em;cursor:pointer;
@@ -113,17 +108,16 @@
   width: 100%;
 }
 
-/* Progressions grid */
-.tool-chord #progressions .prog-list{
-  display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:.75rem
+/* Popular Progressions */
+.tool-chord #progressions h2{ font-weight:800; font-size:1.35rem }
+.tool-chord .prog-list{
+  display:grid; gap:.6rem
 }
-@media (max-width: 860px){
-  .tool-chord #progressions .prog-list{ grid-template-columns:1fr }
+.tool-chord .group{
+  border:1px solid #ffffff1a; border-radius:10px; padding:.75rem; background: rgba(0,0,0,.2);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
 }
-.tool-chord .prog-card{
-  border:1px solid #ffffff22; background: var(--tile); border-radius:8px; padding:.9rem
-}
-.tool-chord .prog-name{ font-weight:800; text-align:center; margin-bottom:.25rem }
+.tool-chord .group h3{ margin:.25rem 0 .6rem; font-weight:700; font-size:1.05rem; letter-spacing:.02em; text-align:center }
 .tool-chord .prog-row{
   display:grid; grid-template-columns:1fr auto; gap:.5rem; padding:.4rem 0; border-top:1px dashed #ffffff1a
 }
@@ -166,3 +160,116 @@
   display:flex; justify-content:center; align-items:center; gap:.75rem
 }
 .tool-chord .met-toggle{ display:inline-flex; align-items:center; gap:.35rem; color:var(--muted); font-size:.95rem }
+
+/* ===== Chord Arranger — Mobile layout (<=780px) ===== */
+@media (max-width: 780px){
+
+  /* Keep panels visually centered on the blue band */
+  .tool-chord > * { margin-inline: auto; max-width: 100%; }
+
+  /* Controls row: wrap neatly, two per line */
+  .tool-chord .controls {
+    display: flex; flex-wrap: wrap; gap: .6rem;
+  }
+  .tool-chord .controls > label {
+    flex: 1 1 160px; min-width: 150px;
+  }
+
+  /* Palette: 2-up buttons on phones */
+  .tool-chord #palette .chords {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .6rem;
+  }
+
+  /* Timeline: show one bar per row on mobile (no sideways scroll) */
+  .tool-chord #timeline { overflow-x: hidden; padding-bottom: 8px; }
+  .tool-chord #timeline .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    min-width: 0;
+  }
+  .tool-chord #timeline .grid > * { width: 100% !important; }
+
+  /* Transport/toolbar: wrap instead of overflowing */
+  .tool-chord #transport .transport-row {
+    display: flex; flex-wrap: wrap; gap: .6rem;
+  }
+  .tool-chord #transport .transport-row > * {
+    flex: 1 1 160px;
+  }
+}
+/* ===== Chord Arranger — Mobile layout (<=780px) ===== */
+@media (max-width: 780px){
+
+  /* Match site layout: full-width container with safe side padding */
+  .page-hero .container,
+  .section .container { padding-inline: 1rem; }
+
+  /* Remove stray side gutters so the blue band and content align with screen edges */
+  .tool-chord { padding-inline: 0; }
+  .tool-chord > *,                 /* each major section inside the tool */
+  .tool-chord section { margin-inline: 0; max-width: 100%; }
+
+  /* Controls row: two per line, labels aligned with inputs */
+  .tool-chord .controls {
+    display: grid; grid-template-columns: 1fr 1fr; gap: .6rem;
+    align-items: center;
+  }
+  .tool-chord .controls > label {
+    display: flex; align-items: center; gap: .5rem; min-width: 0;
+  }
+  .tool-chord select,
+  .tool-chord input[type="number"] { min-height: 36px; }
+
+  /* Palette: two-up buttons */
+  .tool-chord #palette .chords {
+    display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .6rem;
+  }
+
+  /* Timeline: one bar per row (no horizontal scroll on phones) */
+  .tool-chord #timeline   { overflow-x: hidden; padding-bottom: 8px; }
+  .tool-chord #timeline .grid {
+    display: grid; grid-template-columns: 1fr; gap: 10px; min-width: 0;
+  }
+  .tool-chord #timeline .grid > * { width: 100% !important; }
+
+  /* Transport: wrap instead of overflowing */
+  .tool-chord #transport .transport-row {
+    display: flex; flex-wrap: wrap; gap: .6rem;
+  }
+  .tool-chord #transport .transport-row > * { flex: 1 1 160px; }
+}
+/* ===== Chord Arranger — definitive mobile rules (<=780px) ===== */
+@media (max-width: 780px){
+
+  /* 1) Kill the horizontal scroll and align the hero like home */
+  html, body { overflow-x: hidden; }                  /* prevents the “gap on the right” */
+  .page-hero, .section, .tool-chord { overflow-x: clip; }
+  .page-hero .container,
+  .section .container { padding-inline: 1rem; }       /* same edge padding as home */
+
+  /* 2) Remove stray inner gutters in the tool so content sits on the blue band */
+  .tool-chord { padding-inline: 0; }
+  .tool-chord > *,
+  .tool-chord section { margin-inline: 0; max-width: 100%; }
+
+  /* 3) Controls: two per row, label + input aligned */
+  .tool-chord .controls { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; align-items: center; }
+  .tool-chord .controls > label { display: flex; align-items: center; gap: .5rem; min-width: 0; }
+  .tool-chord select,
+  .tool-chord input[type="number"] { min-height: 36px; }
+
+  /* 4) Palette: 2-up on phones */
+  .tool-chord #palette .chords { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .6rem; }
+
+  /* 5) Timeline: one bar per row, no sideways scroll */
+  .tool-chord #timeline { overflow-x: hidden; padding-bottom: 8px; }
+  .tool-chord #timeline .grid { display: grid; grid-template-columns: 1fr; gap: 10px; min-width: 0; }
+  .tool-chord #timeline .grid > * { width: 100% !important; }
+
+  /* 6) Transport: wrap instead of overflowing */
+  .tool-chord #transport .transport-row { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .tool-chord #transport .transport-row > * { flex: 1 1 160px; }
+}
