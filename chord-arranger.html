@@ -1,167 +1,268 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Chord Arranger — EverElms Studio</title>
-  <meta name="description" content="Arrange chord progressions, audition them, and export MIDI. A free tool from EverElms Studio."/>
-  <link rel="icon" href="favicon.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <!-- Site styles first -->
-  <link rel="stylesheet" href="style.css"/>
-  <!-- Tool styles (scoped) -->
-  <link rel="stylesheet" href="chordStyle.css"/>
-  <!-- Tone.js for playback -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EverElms Song Starter — EverElms Studio</title>
+  <meta name="description" content="Turn a feeling into a playable song sketch—with chords, melody, and bass. No music theory required.">
+  <meta name="theme-color" content="#fbfbf2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="prototype.css?v=20260805-beta-support">
+  <link rel="stylesheet" href="chordStyle.css?v=20260805-release">
   <script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
 </head>
-<body>
+<body class="tool-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="container topbar__inner">
-      <nav class="topbar__links" aria-label="Utility">
-        <span class="socials">
-          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
-          <a class="icon" href="https://www.instagram.com/everelmsetudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
-        </span>
-      </nav>
-    </div>
-  </div>
-
-  <!-- Header / Nav -->
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html">
-        <img class="logo" src="media/NewLogoTree.png" alt="EverElms Studio logo" width="36" height="36"/>
-        <span class="wordmark">EverElms Studio</span>
-      </a>
+    <a class="brand" href="index.html" aria-label="EverElms Studio home">
+      <span class="brand-mark" aria-hidden="true">E</span>
+      <span>EverElms <strong>Studio</strong></span>
+    </a>
 
-      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span>Menu</span>
+    </button>
 
-      <nav class="site-nav" aria-label="Primary">
-        <ul>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#games">Games</a></li>
-          <li><a href="diary.html">Diary</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a href="index.html#games">Games</a>
+      <a href="index.html#project">In development</a>
+      <a href="index.html#tools" aria-current="page">Tools</a>
+      <a href="index.html#about">About</a>
+    </nav>
   </header>
 
   <main id="main">
-    <!-- Page hero (site style) -->
-    <section class="page-hero">
-      <div class="container">
-        <h1>Chord Arranger</h1>
-        <p class="diary-intro">Arrange progressions, audition them, share a link, or export MIDI.</p>
+    <section class="tool-hero">
+      <div class="tool-hero-copy">
+        <a class="back-link" href="index.html#tools"><span aria-hidden="true">←</span> All tools</a>
+        <p class="eyebrow">EverElms tool 001 · Music <span class="beta-badge">Beta</span></p>
+        <h1>EverElms<br><span>Song Starter.</span></h1>
+        <p>Turn a feeling into a playable song sketch—with chords, melody, and bass. No music theory required.</p>
+      </div>
+      <div class="hero-keyboard" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
     </section>
 
-    <!-- Tool body (scoped under .tool-chord) -->
-    <section class="section">
-      <div class="container">
-        <div class="tool-chord">
-          <!-- Controls -->
-          <div class="controls wrap-row" role="group" aria-label="Chord arranger controls">
-            <label>Key:
-              <select id="key">
-                <option value="C" selected>C</option>
-                <option value="G">G</option>
-                <option value="D">D</option>
-                <option value="A">A</option>
-                <option value="E">E</option>
-                <option value="B">B</option>
-                <option value="F#">F#</option>
-                <option value="C#">C#</option>
-                <option value="F">F</option>
-                <option value="Bb">Bb</option>
-                <option value="Eb">Eb</option>
-                <option value="Ab">Ab</option>
-                <option value="Db">Db</option>
-                <option value="Gb">Gb</option>
-                <option value="Cb">Cb</option>
-              </select>
-            </label>
-            <label>Mode:
-              <select id="mode">
-                <option value="major" selected>Major</option>
-                <option value="minor">Minor</option>
-              </select>
-            </label>
-            <label>Bars:
-              <select id="bars">
-                <option value="4" selected>4</option>
-                <option value="8">8</option>
-                <option value="16">16</option>
-              </select>
-            </label>
-            <label>Tempo:
-              <input type="number" id="tempo" value="90" min="40" max="200" /> BPM
-            </label>
+    <section class="arranger-shell" aria-label="EverElms Song Starter application">
+      <div class="tool-chord">
+        <section id="progressions" class="arranger-panel">
+          <div class="panel-heading">
+            <span class="panel-number">Start</span>
+            <div><p>No theory needed</p><h2>Start with a feeling.</h2></div>
+          </div>
+          <p class="interaction-hint guide-intro">You do not need to know a key, chord, or tempo yet. Tell us what you are reaching for and we will set the table.</p>
+
+          <fieldset class="starter-question">
+            <legend>1. What are you trying to make?</legend>
+            <div class="prog-list"></div>
+          </fieldset>
+
+          <fieldset class="starter-question style-question">
+            <legend>2. How should it sound?</legend>
+            <div class="style-list" role="group" aria-label="Choose a musical style">
+              <button type="button" class="selected" data-style="pop" aria-pressed="true"><span>Hook</span><strong>Pop</strong><small>Clear, catchy, and balanced</small></button>
+              <button type="button" data-style="lofi" aria-pressed="false"><span>Haze</span><strong>Lo-fi</strong><small>Soft, slow, and laid-back</small></button>
+              <button type="button" data-style="cinematic" aria-pressed="false"><span>Wide shot</span><strong>Cinematic</strong><small>Spacious, patient, and dramatic</small></button>
+              <button type="button" data-style="arcade" aria-pressed="false"><span>High score</span><strong>Arcade</strong><small>Bright, quick, and energetic</small></button>
+            </div>
+          </fieldset>
+
+          <div class="starter-options">
+            <fieldset class="starter-question">
+              <legend>3. How much energy?</legend>
+              <div class="choice-row" data-choice="energy">
+                <button type="button" data-value="calm">Calm<small>70 BPM</small></button>
+                <button type="button" class="selected" data-value="steady">Steady<small>90 BPM</small></button>
+                <button type="button" data-value="driving">Driving<small>120 BPM</small></button>
+              </div>
+            </fieldset>
+            <fieldset class="starter-question length-question">
+              <legend>4. How much room?</legend>
+              <div class="choice-row" data-choice="length">
+                <button type="button" class="selected" data-value="4">Short loop<small>4 bars</small></button>
+                <button type="button" data-value="8">Longer idea<small>8 bars</small></button>
+              </div>
+            </fieldset>
+            <fieldset class="starter-question rhythm-question">
+              <legend>5. How should the chords move?</legend>
+              <div class="choice-row" data-choice="rhythm">
+                <button type="button" class="selected" data-value="flowing">Flowing<small>One long chord</small></button>
+                <button type="button" data-value="pulsing">Pulsing<small>Two gentle hits</small></button>
+                <button type="button" data-value="driving">Driving<small>Four short hits</small></button>
+              </div>
+            </fieldset>
           </div>
 
-          <!-- Progressions -->
-          <section id="progressions">
-            <h2>Popular Progressions</h2>
-            <div class="prog-list"></div>
-          </section>
+          <div class="starter-action">
+            <p id="starterSummary">Choose a feeling to begin.</p>
+            <button id="buildStarter" type="button" disabled>Build my starting point</button>
+          </div>
 
-          <!-- Palette -->
-          <section id="palette">
-            <h2>Chord Palette</h2>
-            <div class="chords auto-grid auto-grid--lg-4"></div>
-          </section>
-
-          <!-- Timeline -->
-          <section id="timeline">
-            <h2>Timeline</h2>
-            <div class="grid scroll-x"></div>
-          </section>
-
-          <!-- Transport -->
-          <section id="transport">
-            <div class="transport-row wrap-row">
-              <button id="play" type="button">Play</button>
-              <button id="stop" type="button">Stop</button>
-              <button id="undo" type="button" title="Undo last add/fill">Undo</button>
-              <button id="resetGrid" type="button" title="Clear all placed chords">Reset Grid</button>
-              <label class="met-toggle">
-                <input id="metEnabled" type="checkbox" />
-                Metronome
+          <details class="setup-details">
+            <summary>Fine-tune the music settings</summary>
+            <p>These are optional. The starting guide will choose them for you.</p>
+            <div class="controls" role="group" aria-label="Fine-tune song setup">
+              <label><span>Key</span>
+                <select id="key">
+                  <option value="C" selected>C</option><option value="G">G</option><option value="D">D</option>
+                  <option value="A">A</option><option value="E">E</option><option value="B">B</option>
+                  <option value="F#">F#</option><option value="C#">C#</option><option value="F">F</option>
+                  <option value="Bb">Bb</option><option value="Eb">Eb</option><option value="Ab">Ab</option>
+                  <option value="Db">Db</option><option value="Gb">Gb</option><option value="Cb">Cb</option>
+                </select>
               </label>
-              <button id="copyLink" type="button" title="Copy a shareable URL">Copy Link</button>
-              <button id="exportMidi" type="button" title="Download .mid file">Export MIDI</button>
+              <label><span>Mode</span>
+                <select id="mode"><option value="major" selected>Major</option><option value="minor">Minor</option></select>
+              </label>
+              <label><span>Bars</span>
+                <select id="bars"><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option></select>
+              </label>
+              <label><span>Tempo</span>
+                <span class="tempo-input"><input type="number" id="tempo" value="90" min="40" max="200"><em>BPM</em></span>
+              </label>
             </div>
-          </section>
-        </div>
+            <div id="setupCharacter" class="setup-character" aria-live="polite">
+              <div class="setup-home-heading">
+                <span>Your musical home</span>
+                <h3 id="setupCharacterTitle">C is the home note</h3>
+              </div>
+              <div class="home-chord-example">
+                <span>Home chord</span>
+                <strong id="setupHomeChord">Cmaj7</strong>
+                <small id="setupHomeNotes">Made from C · E · G · B</small>
+                <button id="hearHomeChord" type="button">Hear C major</button>
+              </div>
+              <p id="setupCharacterDescription">Because C is home, the other recommended chords are chosen by how they lead away from or back to C.</p>
+              <p class="setup-key-note"><strong>Major and minor:</strong> Major often feels more open and hopeful. Minor often feels more reflective and tense. The chord order, tempo, melody, and rhythm can reshape either one.</p>
+            </div>
+          </details>
+          <div class="guide-result" aria-live="polite" hidden></div>
+        </section>
+
+        <section id="palette" class="arranger-panel">
+          <div class="panel-heading">
+            <span class="panel-number">02</span>
+            <div><p>Make it your own</p><h2>Shape your progression.</h2></div>
+          </div>
+          <div class="palette-context">
+            <p id="paletteWhy">These are the chords that naturally fit the musical starting point created above.</p>
+            <div id="paletteCurrent" class="palette-current" hidden></div>
+          </div>
+          <p id="paletteGuide" class="interaction-hint palette-guide">Choose a feeling above and build your starting point first.</p>
+          <div class="chords"></div>
+          <details class="shorthand-help">
+            <summary>What are the small symbols?</summary>
+            <p>They are music shorthand for each chord's role. You can ignore them for now and choose by ear.</p>
+          </details>
+        </section>
+
+        <section id="timeline" class="arranger-panel timeline-panel">
+          <div class="panel-heading">
+            <span class="panel-number">03</span>
+            <div><p>Build your idea</p><h2>Timeline</h2></div>
+          </div>
+          <div class="timeline-guidance">
+            <p id="timelineGuide" class="interaction-hint">Select a chord above, then tap a timeline position to replace it.</p>
+            <button id="eraseMode" type="button" aria-pressed="false">Erase chords: Off</button>
+          </div>
+          <div class="grid"></div>
+        </section>
+
+        <section id="shapeAssistant" class="arranger-panel shape-panel">
+          <div class="panel-heading">
+            <span class="panel-number">04</span>
+            <div><p>Guided editing</p><h2>Where should it go next?</h2></div>
+          </div>
+          <p class="interaction-hint shape-intro">You do not need to choose the next chord yourself. Tell us what you want to feel more strongly and we will suggest one change.</p>
+          <div class="shape-choices" role="group" aria-label="Ways to shape the progression">
+            <button type="button" data-intent="brighter">Make it brighter</button>
+            <button type="button" data-intent="darker">Make it darker</button>
+            <button type="button" data-intent="tension">Add more tension</button>
+            <button type="button" data-intent="ending">Give it a stronger ending</button>
+            <button type="button" data-intent="variation">Change the second half</button>
+            <button type="button" data-intent="surprise">Surprise me</button>
+          </div>
+          <div id="shapeProposal" class="shape-proposal" aria-live="polite" hidden></div>
+        </section>
+
+        <section id="melodyHelper" class="arranger-panel melody-panel">
+          <div class="panel-heading">
+            <span class="panel-number">05</span>
+            <div><p>Beginner melody</p><h2>Find a melody.</h2></div>
+          </div>
+          <p class="interaction-hint melody-intro">Each bar offers three notes that safely fit its chord. Choose by ear—there is no wrong order to try them.</p>
+          <div class="melody-actions">
+            <button id="buildMelody" type="button">Give me a starting melody</button>
+            <button id="clearMelody" type="button">Clear melody</button>
+            <p id="melodyGuide">Build a chord progression first.</p>
+          </div>
+          <div id="melodyBars" class="melody-bars"></div>
+        </section>
+
+        <section id="bassHelper" class="arranger-panel bass-panel">
+          <div class="panel-heading">
+            <span class="panel-number">06</span>
+            <div><p>Low-end foundation</p><h2>Add a bass line.</h2></div>
+          </div>
+          <p class="interaction-hint bass-intro">Bass gives the music weight. We will follow the lowest note of each chord, so every note fits automatically.</p>
+          <div class="bass-actions">
+            <button id="buildBass" type="button">Give me a bass line</button>
+            <button id="clearBass" type="button">Clear bass</button>
+            <p id="bassGuide">Build a chord progression first.</p>
+          </div>
+          <div class="bass-style-choices" role="group" aria-label="Choose how the bass should move">
+            <button type="button" class="selected" data-bass-style="hold" aria-pressed="true"><strong>Hold it down</strong><small>One long note per bar</small></button>
+            <button type="button" data-bass-style="pulse" aria-pressed="false"><strong>Keep it moving</strong><small>A steady note on every beat</small></button>
+            <button type="button" data-bass-style="motion" aria-pressed="false"><strong>Add some motion</strong><small>A safe pattern using the chord</small></button>
+          </div>
+          <div id="bassBars" class="bass-bars"></div>
+        </section>
+
+        <section id="transport" class="transport-panel">
+          <div class="transport-primary">
+            <button id="play" type="button"><span aria-hidden="true">▶</span> Play</button>
+            <button id="stop" type="button"><span aria-hidden="true">■</span> Stop</button>
+          </div>
+          <div class="transport-secondary">
+            <button id="undo" type="button" title="Undo last add or fill">Undo</button>
+            <button id="resetGrid" type="button" title="Clear all placed chords">Reset grid</button>
+            <button id="startOver" type="button" title="Return the entire arranger to its starting state">Start over</button>
+            <label class="met-toggle"><input id="metEnabled" type="checkbox"><span>Metronome</span></label>
+            <button id="copyLink" type="button" title="Copy a shareable URL">Copy link</button>
+            <button id="exportMidi" type="button" title="Download MIDI and a beginner guide">Export project</button>
+          </div>
+        </section>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container ftr">
-      <p>&copy; <span id="year"></span> EverElms Studio</p>
-      <nav aria-label="Footer">
-        <a href="index.html#about">About</a>
-        <a href="index.html#games">Games</a>
-        <a href="index.html#contact">Contact</a>
-        <span class="footer-socials">
-          <a class="icon" href="https://x.com/EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
-          <a class="icon" href="https://www.instagram.com/everelmsetudio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-          <a class="icon" href="https://www.youtube.com/@EverElmsStudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
-        </span>
-      </nav>
+  <aside id="miniPlayer" class="mini-player" aria-label="Playback controls" hidden>
+    <div class="mini-now-playing">
+      <span id="miniStatus">Ready to play</span>
+      <strong id="miniChord">Your progression</strong>
     </div>
+    <div id="miniMeta" class="mini-meta">90 BPM · Flowing</div>
+    <div class="mini-controls">
+      <button id="miniPlay" type="button">Play</button>
+      <button id="miniStop" type="button">Stop</button>
+      <button id="miniLoop" type="button" aria-pressed="true">Loop: On</button>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">E</span>
+      <span>EverElms Studio</span>
+    </a>
+    <p>Found a problem with this beta?<br><a href="mailto:info@everelmsstudio.com">info@everelmsstudio.com</a></p>
+    <p>© <span id="year">2026</span> EverElms Studio</p>
   </footer>
 
-  <!-- Your tool JS (unchanged logic) -->
-  <script src="script.js"></script>
-  <script src="chordApp.js"></script>
+  <script src="prototype.js"></script>
+  <script src="chordApp.js?v=20260805-beta-support"></script>
 </body>
 </html>
