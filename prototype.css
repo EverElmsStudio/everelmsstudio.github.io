@@ -72,7 +72,8 @@ h1 span { color: var(--blue); }
 .stage-orbit { position: absolute; border-radius: 50%; filter: blur(1px); }
 .orbit-blue { width: 390px; height: 390px; top: 12%; left: 2%; background: rgba(45, 125, 210, .14); }
 .orbit-yellow { width: 210px; height: 210px; right: -3%; bottom: 6%; background: rgba(238, 185, 2, .25); }
-.promo-card { width: min(350px, 78vw); aspect-ratio: 9 / 16; position: relative; z-index: 2; overflow: hidden; border-radius: 28px; background: var(--blue); box-shadow: var(--shadow); transform: none; }
+.promo-card { width: min(350px, 78vw); aspect-ratio: 9 / 16; position: relative; z-index: 2; overflow: hidden; border-radius: 28px; background: var(--blue); color: inherit; box-shadow: var(--shadow); text-decoration: none; transform: none; transition: transform .2s ease, box-shadow .2s ease; }
+.promo-card:hover, .promo-card:focus-visible { transform: translateY(-5px); box-shadow: 0 30px 70px rgba(36, 36, 38, .18); }
 .game-preview { width: 100%; height: 100%; position: relative; overflow: hidden; background: linear-gradient(150deg, #9ad8ff 0%, #2d7dd2 48%, #185596 100%); }
 .game-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(19,35,54,.03) 48%, rgba(19,35,54,.76) 100%); pointer-events: none; }
 .promo-badge { position: absolute; z-index: 2; left: 1.1rem; top: 1.1rem; padding: .55rem .75rem; border-radius: 999px; background: rgba(251,251,242,.92); color: var(--ink); font-size: .66rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }

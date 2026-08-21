@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>EverElms charge sound preview</title>
+<body>
+  <p id="status">Rendering brighter charge preview…</p>
+  <audio id="preview" controls></audio>
+  <a id="download" hidden download="charge-up-brighter-faster-preview.wav">Download preview</a>
+  <script>
+    const encodeWave = (buffer) => {
+      const channels = buffer.numberOfChannels;
+      const samples = buffer.length;
+      const bytes = new ArrayBuffer(44 + samples * channels * 2);
+      const view = new DataView(bytes);
+      const write = (offset, text) => {
+        for (let index = 0; index < text.length; index += 1) view.setUint8(offset + index, text.charCodeAt(index));
+      };
+      write(0, 'RIFF');
+      view.setUint32(4, 36 + samples * channels * 2, true);
+      write(8, 'WAVE');
+      write(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, channels, true);
+      view.setUint32(24, buffer.sampleRate, true);
+      view.setUint32(28, buffer.sampleRate * channels * 2, true);
+      view.setUint16(32, channels * 2, true);
+      view.setUint16(34, 16, true);
+      write(36, 'data');
+      view.setUint32(40, samples * channels * 2, true);
+      let offset = 44;
+      for (let sampleIndex = 0; sampleIndex < samples; sampleIndex += 1) {
+        for (let channel = 0; channel < channels; channel += 1) {
+          const sample = Math.max(-1, Math.min(1, buffer.getChannelData(channel)[sampleIndex]));
+          view.setInt16(offset, sample < 0 ? sample * 32768 : sample * 32767, true);
+          offset += 2;
+        }
+      }
+      return new Blob([bytes], { type: 'audio/wav' });
+    };
+
+    (async () => {
+      const response = await fetch('../sloppy-golf/media/audio/charge-up.mp3?v=2');
+      const context = new AudioContext();
+      const input = await context.decodeAudioData(await response.arrayBuffer());
+      await context.close();
+      // Preview the short Legend-rank outward meter sweep rather than the
+      // complete source file, so approval reflects how it will feel in game.
+      const previewSeconds = .58;
+      const pitch = 2.75;
+      const offline = new OfflineAudioContext(input.numberOfChannels, Math.ceil(input.sampleRate * previewSeconds), input.sampleRate);
+      const source = offline.createBufferSource();
+      const shelf = offline.createBiquadFilter();
+      const presence = offline.createBiquadFilter();
+      const compressor = offline.createDynamicsCompressor();
+      const gain = offline.createGain();
+      source.buffer = input;
+      source.playbackRate.value = pitch;
+      shelf.type = 'highshelf';
+      shelf.frequency.value = 2100;
+      shelf.gain.value = 6;
+      presence.type = 'peaking';
+      presence.frequency.value = 1050;
+      presence.Q.value = .8;
+      presence.gain.value = 2.5;
+      compressor.threshold.value = -5;
+      compressor.knee.value = 8;
+      compressor.ratio.value = 3;
+      compressor.attack.value = .003;
+      compressor.release.value = .12;
+      gain.gain.value = .84;
+      source.connect(presence).connect(shelf).connect(compressor).connect(gain).connect(offline.destination);
+      source.start();
+      const rendered = await offline.startRendering();
+      const url = URL.createObjectURL(encodeWave(rendered));
+      document.querySelector('#preview').src = url;
+      const download = document.querySelector('#download');
+      download.href = url;
+      download.hidden = false;
+      document.querySelector('#status').textContent = 'Preview ready: faster 0.58-second sweep with stronger pitch and brightness.';
+    })().catch((error) => {
+      document.querySelector('#status').textContent = `Preview failed: ${error.message}`;
+    });
+  </script>
+</body>
+</html>

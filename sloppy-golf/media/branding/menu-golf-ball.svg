@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="presentation">
+  <defs>
+    <radialGradient id="ball" cx="32%" cy="25%" r="78%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".58" stop-color="#f5f9f9"/>
+      <stop offset="1" stop-color="#cad7dc"/>
+    </radialGradient>
+    <linearGradient id="bowl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a9c0c9"/>
+      <stop offset=".48" stop-color="#e2ecef"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <filter id="soft-shadow" x="-35%" y="-35%" width="170%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#07141d" flood-opacity=".32"/>
+    </filter>
+    <clipPath id="face">
+      <circle cx="110" cy="110" r="89"/>
+    </clipPath>
+    <g id="dimple">
+      <circle r="8" fill="url(#bowl)" stroke="#d4e1e5" stroke-width="1"/>
+      <path d="M-6 -2.3A6.7 6.7 0 0 1 2.4-6.3" fill="none" stroke="#93adb8" stroke-width="1.45" stroke-linecap="round" opacity=".78"/>
+      <path d="M-2 6.2A6.7 6.7 0 0 0 6.2 1.8" fill="none" stroke="#fff" stroke-width="1.65" stroke-linecap="round" opacity=".95"/>
+    </g>
+  </defs>
+  <g filter="url(#soft-shadow)">
+    <circle cx="110" cy="110" r="96" fill="url(#ball)" stroke="#fff" stroke-width="5"/>
+    <g clip-path="url(#face)" opacity=".93">
+      <use href="#dimple" transform="translate(80 35)"/><use href="#dimple" transform="translate(110 32)"/><use href="#dimple" transform="translate(140 35)"/>
+      <use href="#dimple" transform="translate(56 52)"/><use href="#dimple" transform="translate(86 57)"/><use href="#dimple" transform="translate(116 54)"/><use href="#dimple" transform="translate(146 57)"/><use href="#dimple" transform="translate(169 52)"/>
+      <use href="#dimple" transform="translate(39 78)"/><use href="#dimple" transform="translate(69 81)"/><use href="#dimple" transform="translate(99 79)"/><use href="#dimple" transform="translate(129 79)"/><use href="#dimple" transform="translate(159 81)"/><use href="#dimple" transform="translate(181 78)"/>
+      <use href="#dimple" transform="translate(32 108)"/><use href="#dimple" transform="translate(62 109)"/><use href="#dimple" transform="translate(92 107)"/><use href="#dimple" transform="translate(122 107)"/><use href="#dimple" transform="translate(152 109)"/><use href="#dimple" transform="translate(188 108)"/>
+      <use href="#dimple" transform="translate(39 138)"/><use href="#dimple" transform="translate(69 137)"/><use href="#dimple" transform="translate(99 139)"/><use href="#dimple" transform="translate(129 139)"/><use href="#dimple" transform="translate(159 137)"/><use href="#dimple" transform="translate(181 138)"/>
+      <use href="#dimple" transform="translate(56 166)"/><use href="#dimple" transform="translate(86 163)"/><use href="#dimple" transform="translate(116 166)"/><use href="#dimple" transform="translate(146 163)"/><use href="#dimple" transform="translate(169 166)"/>
+      <use href="#dimple" transform="translate(80 187)"/><use href="#dimple" transform="translate(110 190)"/><use href="#dimple" transform="translate(140 187)"/>
+    </g>
+  </g>
+</svg>

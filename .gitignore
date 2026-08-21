@@ -1,0 +1,21 @@
+_site/
+
+# Local development dependencies and caches
+tools/python-packages/
+tools/__pycache__/
+**/__pycache__/
+
+# Sloppy Golf source/legacy assets retained locally but not published
+sloppy-golf/media/golf-drive-alternate.fbx
+sloppy-golf/media/golf-drive-alternate.fbm/
+sloppy-golf/media/golf-drive.fbx
+sloppy-golf/media/golf-club-driver-source.glb
+
+# Superseded previews and inactive audio experiments
+sloppy-golf/media/driver-club-preview.png
+sloppy-golf/media/driver-long-preview.png
+sloppy-golf/media/driver-steady-preview.png
+sloppy-golf/media/driver-training-preview.png
+sloppy-golf/media/audio/previews/
+sloppy-golf/media/audio/accuracy-focus-pulses.wav
+sloppy-golf/media/audio/charge-up.mp3

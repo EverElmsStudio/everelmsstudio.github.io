@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Sloppy Golf — An EverElms Studio game</title>
+  <meta name="description" content="Step onto the Sloppy Golf tee and chase your personal long-drive record.">
+  <meta name="theme-color" content="#122738">
+  <link rel="icon" href="media/branding/everelms-favicon.svg?v=228" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oxanium:wght@800&family=Sora:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="long-drive.css?v=49">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="game-card" aria-label="Sloppy Golf long drive game">
+      <div class="scene-wrap" id="scene-wrap">
+        <canvas id="game-canvas" aria-label="3D long drive arena"></canvas>
+
+        <div class="studio-splash" aria-hidden="true">
+          <div class="studio-splash-lockup">
+            <img src="media/branding/everelms-favicon.svg?v=228" alt="">
+            <span><b>EVERELMS</b><strong>STUDIO</strong><em>PRESENTS</em></span>
+          </div>
+        </div>
+
+        <div class="top-hud" aria-live="polite">
+          <div class="hud-chip"><span id="rank-label">Rank · L1 · Drive 1/6</span><strong id="rank-value">Rookie</strong></div>
+          <div class="hud-chip record-chip"><span>Personal best</span><strong><b id="best-value">0</b> yd</strong></div>
+          <div class="hud-chip wind-chip"><span>Wind</span><strong id="wind-value">2 mph →</strong></div>
+          <div class="xp-hud" aria-label="Experience progress">
+            <div class="xp-meta"><strong id="xp-level">Level 1</strong><span id="xp-count">0 / 100 XP</span><em id="xp-gain" aria-live="polite">+0 XP</em></div>
+            <div class="xp-track"><span class="xp-fill" id="xp-fill"></span><i></i><i></i><i></i></div>
+            <div class="xp-reward"><span id="xp-next">Next: Level 2</span><strong id="xp-reward">Steady Driver at L3</strong></div>
+          </div>
+        </div>
+
+        <div class="distance-live is-hidden" id="distance-live" aria-live="polite">
+          <strong id="flight-distance">0</strong><span>yd</span>
+        </div>
+
+        <div class="drive-intro is-hidden" id="drive-intro" aria-live="polite">
+          <span>Drive</span><strong id="drive-intro-number">1 / 6</strong>
+        </div>
+
+        <div class="impact-feedback is-hidden" id="impact-feedback" aria-live="polite"></div>
+        <div class="boundary-feedback is-hidden" id="boundary-feedback" aria-live="polite"></div>
+        <div class="impact-flash" id="impact-flash" aria-hidden="true"></div>
+
+        <div class="start-panel panel" id="start-panel">
+          <a class="start-brand" href="../index.html" aria-label="Back to EverElms Studio"><span class="brand-mark" aria-hidden="true"><img src="media/branding/everelms-symbol-small.svg?v=227" alt=""></span><span class="publisher-name"><b>EVERELMS</b><strong>STUDIO</strong></span></a>
+          <img class="start-game-logo" src="media/branding/sloppy-golf-logo.svg" alt="Sloppy Golf">
+          <img class="start-menu-ball" src="media/branding/menu-golf-ball.svg" alt="" aria-hidden="true">
+          <p class="eyebrow">Beta Version 1.0</p>
+          <h1>Step up.<br><span>Send it.</span></h1>
+          <p>Play six drives. Your best valid shot becomes the round score and builds your rank qualification.</p>
+          <button class="primary-button is-loading" id="start-button" type="button" disabled><span class="loading-dot" aria-hidden="true"></span>Loading golfer…</button>
+          <div class="start-menu-actions" aria-label="Game menu">
+            <button class="menu-button" id="sound-button" type="button" aria-label="Mute sound" aria-pressed="false">Sound on</button>
+            <button class="menu-button reset-progress-button" id="reset-progress-button" type="button">Reset progress</button>
+            <a class="menu-button" href="../index.html">Exit</a>
+          </div>
+        </div>
+
+        <div class="swing-panel is-hidden" id="swing-panel">
+          <p class="swing-prompt" id="swing-prompt">Tap to lock power</p>
+          <div class="meter power-meter" id="power-meter">
+            <div class="meter-fill" id="power-fill"></div>
+            <span class="sweet-zone" aria-hidden="true"></span>
+            <span class="meter-marker" id="power-marker" aria-hidden="true"></span>
+          </div>
+          <div class="meter-labels"><span>Easy</span><strong>Power</strong><span>Max</span></div>
+
+          <div class="accuracy-wrap is-hidden" id="accuracy-wrap">
+            <div class="meter accuracy-meter">
+              <span class="accuracy-bad left"></span>
+              <span class="accuracy-good"></span>
+              <span class="accuracy-perfect"></span>
+              <span class="accuracy-bad right"></span>
+              <span class="meter-marker accuracy-marker" id="accuracy-marker" aria-hidden="true"></span>
+            </div>
+            <div class="meter-labels"><span>Hook</span><strong>Accuracy</strong><span>Slice</span></div>
+          </div>
+        </div>
+
+        <div class="result-panel panel is-hidden" id="result-panel" role="dialog" aria-modal="true" aria-labelledby="result-title">
+          <div class="result-hero">
+            <div class="result-main">
+              <p class="result-kicker" id="result-kicker">In the grid</p>
+              <h2 id="result-title">A valid drive</h2>
+              <div class="result-distance"><strong id="result-distance">286</strong><span id="result-distance-label"><b>yards total</b></span></div>
+              <div class="new-record is-hidden" id="new-record">New personal best!</div>
+            </div>
+            <figure class="strike-card">
+              <div class="driver-head">
+                <div class="clubface" id="clubface" role="img" aria-labelledby="strike-label">
+                  <img class="contact-club-image" src="media/driver-face-reference.png?v=1" alt="" aria-hidden="true">
+                  <span class="clubface-target" aria-hidden="true"></span>
+                  <span class="strike-dot" id="strike-dot" aria-hidden="true"></span>
+                </div>
+              </div>
+              <figcaption><span>Face contact</span><strong id="strike-label">Center</strong></figcaption>
+            </figure>
+          </div>
+          <dl class="stats-grid">
+            <div><dt>Carry</dt><dd id="carry-stat">265 yd</dd></div>
+            <div><dt>Club speed</dt><dd id="club-speed-stat">132 mph</dd></div>
+            <div><dt>Ball speed</dt><dd id="speed-stat">171 mph</dd></div>
+            <div><dt>Launch</dt><dd id="launch-stat">13.4°</dd></div>
+            <div><dt>Shape</dt><dd id="shape-stat">Straight</dd></div>
+            <div><dt id="center-stat-label">From center</dt><dd id="center-stat">4 yd R</dd></div>
+          </dl>
+          <p class="rank-progress" id="rank-progress">14 yards to Amateur</p>
+          <button class="primary-button" id="again-button" type="button">Drive again</button>
+        </div>
+
+        <div class="reward-reveal panel is-hidden" id="level-reveal" role="dialog" aria-modal="true" aria-labelledby="level-reveal-title">
+          <p class="eyebrow">Level up!</p>
+          <div class="reward-orbit" aria-hidden="true"><span></span><strong id="level-reveal-number">3</strong></div>
+          <h2 id="level-reveal-title">Level 3 reached</h2>
+          <p id="level-reveal-message">Your next driver reward is ready.</p>
+          <div class="reward-next" id="level-reveal-next"><span>Next reward</span><strong>Long Driver at Level 7</strong></div>
+          <button class="primary-button" id="level-reveal-button" type="button">Continue</button>
+        </div>
+
+        <div class="driver-reveal panel is-hidden" id="driver-reveal" role="dialog" aria-modal="true" aria-labelledby="driver-reveal-title">
+          <p class="eyebrow">New driver unlocked</p>
+          <div class="driver-reveal-art">
+            <span class="driver-reveal-halo" aria-hidden="true"></span>
+            <canvas id="driver-reveal-canvas" role="img" aria-label="Steady Driver 3D preview"></canvas>
+          </div>
+          <div class="driver-reveal-copy">
+            <span class="driver-reveal-level" id="driver-reveal-level">Level 3 reward</span>
+            <h2 id="driver-reveal-title">Steady Driver</h2>
+            <p id="driver-reveal-description">A more forgiving driver built for finding the center.</p>
+          </div>
+          <dl class="driver-reveal-stats" id="driver-reveal-stats">
+            <div><dt>Accuracy meter</dt><dd>4% slower</dd></div>
+          </dl>
+          <p class="driver-reveal-next">Automatically equipped next round</p>
+          <button class="primary-button" id="driver-reveal-button" type="button">Continue</button>
+        </div>
+
+        <div class="reward-reveal rank-reveal panel is-hidden" id="rank-reveal" role="dialog" aria-modal="true" aria-labelledby="rank-reveal-title">
+          <p class="eyebrow">Rank up!</p>
+          <div class="rank-emblem" aria-hidden="true"><span>RANK</span><strong id="rank-reveal-mark">A</strong></div>
+          <h2 id="rank-reveal-title">Amateur</h2>
+          <p>Your recent drives met both the distance and level requirements.</p>
+          <div class="reward-next"><span>New rank</span><strong id="rank-reveal-name">Amateur achieved</strong></div>
+          <button class="primary-button" id="rank-reveal-button" type="button">View round summary</button>
+        </div>
+
+        <div class="round-panel panel is-hidden" id="round-panel" role="dialog" aria-modal="true" aria-labelledby="round-title">
+          <p class="eyebrow">Round complete</p>
+          <h2 class="sr-only" id="round-title">Round summary</h2>
+          <div class="round-hero">
+            <div class="round-best">
+              <span id="round-best-label">Best drive</span>
+              <div><strong id="round-best">352</strong><b id="round-best-unit">yd</b></div>
+            </div>
+            <div class="round-summary-grid">
+              <div><span>Round average</span><strong id="round-average">248 yd</strong></div>
+              <div><span>XP earned</span><strong id="round-xp">+85 XP</strong></div>
+            </div>
+          </div>
+          <p class="round-recovery is-hidden" id="round-recovery"><strong>Every OOB counts as 0 toward the round average.</strong> Take a breath and find the grid next round.</p>
+          <p class="round-section-label">Six-drive scorecard</p>
+          <ol class="round-shots" id="round-shots" aria-label="Round drive results"></ol>
+          <details class="qualification-card" id="qualification-card">
+            <summary class="qualification-heading">
+              <span id="qualification-heading">Next rank</span>
+              <strong id="qualification-rank">Amateur</strong>
+              <em>View requirements</em>
+            </summary>
+            <div class="qualification-requirements">
+              <span id="qualification-distance-row"><b id="qualification-distance-label">Distance requirement</b><strong id="qualification-rounds">1 of 2 rounds reached 325+ yd</strong></span>
+              <span id="qualification-level-row"><b id="qualification-level-label">Level 1 of 2</b><strong id="qualification-level">Keep earning XP to qualify</strong></span>
+            </div>
+            <p class="sr-only" id="round-progress" aria-live="polite">1 more 325+ yd round needed</p>
+          </details>
+          <button class="primary-button" id="new-round-button" type="button">Play another round</button>
+          <button class="round-menu-button" id="round-menu-button" type="button">Main menu</button>
+          <div class="round-studio-signature" aria-label="An EverElms Studio game">
+            <span><img src="media/branding/everelms-symbol-small.svg?v=228" alt=""></span>
+            <b>EVERELMS</b><strong>STUDIO</strong>
+          </div>
+        </div>
+
+        <div class="rotate-note">Best played upright in portrait orientation.</div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="reset-dialog" id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-description">
+    <form method="dialog">
+      <p class="eyebrow">Playtest tools</p>
+      <h2 id="reset-title">Reset all progress?</h2>
+      <p id="reset-description">This erases your personal best, XP, rank, unlocked drivers, and round history. Your sound setting will be kept.</p>
+      <div class="reset-dialog-actions">
+        <button class="secondary-button" value="cancel" type="submit">Keep progress</button>
+        <button class="danger-button" id="confirm-reset-button" value="reset" type="submit">Reset everything</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/fflate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+  <script src="long-drive.js?v=230"></script>
+</body>
+</html>

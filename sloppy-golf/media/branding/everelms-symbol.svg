@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="120 8 360 416" role="img" aria-labelledby="title desc">
+  <title id="title">EverElms symbol</title>
+  <desc id="desc">The interlocking EverElms E and S symbol in EverElms blue.</desc>
+  <defs>
+    <linearGradient id="everelms-blue" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="0" y2="408">
+      <stop offset="0" stop-color="#438bd0"/>
+      <stop offset="1" stop-color="#3478bb"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#everelms-blue)" fill-rule="evenodd">
+    <path d="M155 24 H343 Q359 24 359 40 V64 Q359 80 343 80 H194 V155 H317 Q333 155 333 171 V196 Q333 212 317 212 H194 V288 H343 Q359 288 359 304 V326 Q359 342 343 342 H155 Q137 342 137 324 V42 Q137 24 155 24 Z"/>
+    <path d="M270 90 H445 Q463 90 463 108 V128 Q463 146 445 146 H299 V208 Q299 222 313 222 H445 Q463 222 463 240 V390 Q463 408 445 408 H260 Q242 408 242 390 V371 Q242 353 260 353 H406 V279 H270 Q242 279 242 251 V118 Q242 90 270 90 Z"/>
+  </g>
+</svg>
