@@ -35,9 +35,12 @@ a { color: inherit; }
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
 }
-.brand { display: inline-flex; align-items: center; gap: .75rem; font-family: "Space Grotesk", sans-serif; font-weight: 600; text-decoration: none; letter-spacing: -.03em; }
-.brand strong { color: var(--blue); }
-.brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px 10px 10px 3px; background: var(--ink); color: var(--paper); font-weight: 700; transform: rotate(-4deg); }
+.brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; }
+.brand-mark { width: 38px; height: 38px; display: grid; place-items: center; overflow: hidden; border-radius: 9px; background: linear-gradient(145deg, #b8e83c, var(--green)); box-shadow: inset 0 1px 0 rgba(255,255,255,.48), 0 5px 12px rgba(92,137,0,.2); }
+.brand-mark img { width: 88%; height: 88%; display: block; }
+.brand-type { display: inline-flex; align-items: baseline; gap: .38rem; line-height: 1; }
+.brand-type b { color: var(--ink); font-family: "Oxanium", "Space Grotesk", sans-serif; font-size: .92rem; font-weight: 800; letter-spacing: .055em; }
+.brand-type strong { color: var(--blue); font-family: "Sora", "DM Sans", sans-serif; font-size: .72rem; font-weight: 500; letter-spacing: .025em; }
 .site-nav { display: flex; align-items: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
 .site-nav a { font-weight: 600; text-decoration: none; font-size: .92rem; }
 .site-nav a:hover, .site-nav a:focus-visible { color: var(--blue); }
@@ -74,17 +77,15 @@ h1 span { color: var(--blue); }
 .orbit-yellow { width: 210px; height: 210px; right: -3%; bottom: 6%; background: rgba(238, 185, 2, .25); }
 .promo-card { width: min(350px, 78vw); aspect-ratio: 9 / 16; position: relative; z-index: 2; overflow: hidden; border-radius: 28px; background: var(--blue); color: inherit; box-shadow: var(--shadow); text-decoration: none; transform: none; transition: transform .2s ease, box-shadow .2s ease; }
 .promo-card:hover, .promo-card:focus-visible { transform: translateY(-5px); box-shadow: 0 30px 70px rgba(36, 36, 38, .18); }
-.game-preview { width: 100%; height: 100%; position: relative; overflow: hidden; background: linear-gradient(150deg, #9ad8ff 0%, #2d7dd2 48%, #185596 100%); }
-.game-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(19,35,54,.03) 48%, rgba(19,35,54,.76) 100%); pointer-events: none; }
+.game-preview { width: 100%; height: 100%; position: relative; overflow: hidden; background: #143e28; }
+.game-preview-video { width: 100%; height: 100%; position: absolute; inset: 0; display: block; object-fit: cover; }
+.game-preview::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,24,35,.05) 42%, rgba(7,25,35,.82) 100%); pointer-events: none; }
 .promo-badge { position: absolute; z-index: 2; left: 1.1rem; top: 1.1rem; padding: .55rem .75rem; border-radius: 999px; background: rgba(251,251,242,.92); color: var(--ink); font-size: .66rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.preview-path { width: 190%; height: 90px; position: absolute; left: -42%; bottom: 15%; border-radius: 50%; border: 18px solid rgba(255,255,255,.82); transform: rotate(-25deg); }
-.preview-player { width: 58px; height: 58px; position: absolute; left: 46%; top: 42%; display: grid; place-items: center; border: 5px solid var(--ink); border-radius: 18px 18px 18px 6px; background: var(--yellow); font-family: "Space Grotesk"; font-size: 1.45rem; font-weight: 700; box-shadow: 7px 8px 0 rgba(36,36,38,.25); transform: rotate(-8deg); }
-.preview-star { position: absolute; color: white; }
-.star-one { top: 16%; left: 22%; font-size: 2rem; }
-.star-two { right: 18%; bottom: 19%; font-size: 1.3rem; }
-.promo-caption { position: absolute; z-index: 2; left: 1.3rem; right: 1.3rem; bottom: 1.3rem; display: grid; color: white; }
-.promo-caption span { color: rgba(255,255,255,.72); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.promo-caption strong { margin-top: .25rem; font-family: "Space Grotesk"; font-size: 1.55rem; letter-spacing: -.04em; }
+.promo-caption { position: absolute; z-index: 2; left: 1.3rem; right: 1.3rem; bottom: 1.3rem; display: grid; gap: .65rem; color: white; }
+.promo-caption > span { color: rgba(255,255,255,.8); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.promo-play { min-height: 54px; padding: .85rem 1.1rem; display: flex; align-items: center; justify-content: space-between; border: 2px solid rgba(255,255,255,.48); border-radius: 14px; background: linear-gradient(135deg, #b8e83c 0%, #97cc04 58%, #82b600 100%); color: #102838; font-family: "Space Grotesk"; font-size: 1rem; font-weight: 700; letter-spacing: .01em; text-transform: uppercase; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 24px rgba(15,36,22,.34); }
+.promo-play span { font-size: 1.3rem; transition: transform .2s ease; }
+.promo-card:hover .promo-play span, .promo-card:focus-visible .promo-play span { transform: translateX(4px); }
 .label { margin: 0 0 .65rem; color: var(--blue); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .swipe-note { position: relative; z-index: 2; margin-top: 1.5rem; color: var(--muted); font-size: .75rem; font-weight: 600; }
 
@@ -147,7 +148,8 @@ h1 span { color: var(--blue); }
 .site-footer { padding: 2.5rem clamp(1.25rem, 6vw, 7rem); display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 2rem; background: var(--ink); color: #dfe0dc; font-size: .78rem; }
 .site-footer a:not(.brand) { color: white; text-underline-offset: 3px; }
 .footer-brand { color: white; }
-.footer-brand .brand-mark { background: var(--blue); }
+.footer-brand .brand-type b { color: white; }
+.footer-brand .brand-type strong { color: #66bfff; }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; text-align: center; }
@@ -178,4 +180,5 @@ h1 span { color: var(--blue); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
+  .game-preview-video { display: none; }
 }

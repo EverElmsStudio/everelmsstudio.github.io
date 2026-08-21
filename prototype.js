@@ -16,3 +16,18 @@ navigation?.querySelectorAll('a').forEach((link) => {
 
 const year = document.querySelector('#year');
 if (year) year.textContent = String(new Date().getFullYear());
+
+const previewVideo = document.querySelector('.game-preview-video');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function syncPreviewMotion() {
+  if (!previewVideo) return;
+  if (reducedMotion.matches) {
+    previewVideo.pause();
+  } else {
+    previewVideo.play().catch(() => {});
+  }
+}
+
+syncPreviewMotion();
+reducedMotion.addEventListener?.('change', syncPreviewMotion);

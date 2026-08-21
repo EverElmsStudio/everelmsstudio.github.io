@@ -80,6 +80,8 @@ Release packaging now uses `tools/build-pages.mjs` and `.github/workflows/deploy
 
 Version 231 attempted to fix the narrow-phone title-card control row by preventing wrapping. Versions 232 and 233 then changed grid sizing, but real-phone screenshots proved Reset itself remained narrow while unused space shifted toward Exit. The actual cause was an obsolete early `@media (max-width: 560px)` rule that capped every `.reset-progress-button` at `54px`, defeating all later grid work. Version 234 removes that cap and retains explicit Sound `1fr`, Reset `1.35fr`, and Exit `.8fr` columns. Reset can now fill its deliberately widest column and keep its label inside the border. Gameplay and saved progress are unchanged.
 
+Post-v234 website work is isolated on branch `codex/site-branding-video` for local approval before production. The homepage preview card now uses the user-supplied `sloppygolf_splash.mp4`, converted from a 23.2 MB, 60 fps source with audio into a silent 540×1036, 30 fps, fast-start H.264 loop at approximately 741 KB plus a 46 KB poster. The card overlays an EverElms-green gradient `Play now` control and links to `/sloppy-golf/`. Header and footer branding use the approved blue E/S symbol in a green square, Oxanium ExtraBold `EVERELMS`, and Sora Medium `STUDIO`; the site favicon matches. Reduced-motion visitors receive the poster rather than active video. The GitHub Pages allowlist includes the two new `site-media/` files. This website branch is not published yet.
+
 ## Core game loop
 
 - The player competes against their own record.

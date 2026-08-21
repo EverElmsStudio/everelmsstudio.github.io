@@ -13,6 +13,8 @@ const publicFiles = [
   'index.html',
   'prototype.css',
   'prototype.js',
+  'site-media/sloppy-golf-splash.mp4',
+  'site-media/sloppy-golf-splash-poster.jpg',
   'chord-arranger.html',
   'chordStyle.css',
   'chordApp.js',

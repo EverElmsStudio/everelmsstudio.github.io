@@ -6,18 +6,19 @@
   <title>EverElms Studio — Small games. Big experiments.</title>
   <meta name="description" content="EverElms Studio is a one-person, AI-powered experimental game studio building small web games and useful creative tools.">
   <meta name="theme-color" content="#fbfbf2">
+  <link rel="icon" href="sloppy-golf/media/branding/everelms-favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="prototype.css?v=20260805-beta-support">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oxanium:wght@800&family=Sora:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="prototype.css?v=20260821-branding-video">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="EverElms Studio home">
-      <span class="brand-mark" aria-hidden="true">E</span>
-      <span>EverElms <strong>Studio</strong></span>
+      <span class="brand-mark" aria-hidden="true"><img src="sloppy-golf/media/branding/everelms-symbol-small.svg" alt=""></span>
+      <span class="brand-type"><b>EVERELMS</b><strong>STUDIO</strong></span>
     </a>
 
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -48,15 +49,14 @@
         <div class="stage-orbit orbit-blue" aria-hidden="true"></div>
         <div class="stage-orbit orbit-yellow" aria-hidden="true"></div>
         <a class="promo-card" href="sloppy-golf/" aria-label="Play Sloppy Golf">
-          <div class="game-preview" role="img" aria-label="Placeholder for a vertical gameplay video or screenshot">
-            <div class="promo-badge">First game · In development</div>
-            <span class="preview-star star-one">✦</span>
-            <span class="preview-star star-two">✦</span>
-            <div class="preview-path"></div>
-            <div class="preview-player">E</div>
+          <div class="game-preview">
+            <video class="game-preview-video" autoplay muted loop playsinline preload="metadata" poster="site-media/sloppy-golf-splash-poster.jpg" aria-hidden="true">
+              <source src="site-media/sloppy-golf-splash.mp4" type="video/mp4">
+            </video>
+            <div class="promo-badge">Sloppy Golf · Beta 1.0</div>
             <div class="promo-caption">
-              <span>Gameplay preview</span>
-              <strong>Play the blockout</strong>
+              <span>Six drives. One best shot.</span>
+              <strong class="promo-play">Play now <span aria-hidden="true">→</span></strong>
             </div>
           </div>
         </a>
@@ -146,8 +146,8 @@
 
   <footer class="site-footer">
     <a class="brand footer-brand" href="index.html">
-      <span class="brand-mark" aria-hidden="true">E</span>
-      <span>EverElms Studio</span>
+      <span class="brand-mark" aria-hidden="true"><img src="sloppy-golf/media/branding/everelms-symbol-small.svg" alt=""></span>
+      <span class="brand-type"><b>EVERELMS</b><strong>STUDIO</strong></span>
     </a>
     <p>Games, tools, and experiments—made with AI and plenty of questions.<br><a href="mailto:info@everelmsstudio.com">info@everelmsstudio.com</a></p>
     <p>© <span id="year">2026</span> EverElms Studio</p>
