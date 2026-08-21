@@ -100,8 +100,8 @@ h1 span { color: var(--blue); }
 .primary-button:disabled { cursor: wait; opacity: .72; }
 .loading-dot { width: 9px; height: 9px; display: inline-block; margin-right: .45rem; border: 2px solid rgba(255,255,255,.45); border-top-color: white; border-radius: 50%; animation: loading-spin .75s linear infinite; }
 @keyframes loading-spin { to { transform: rotate(360deg); } }
-.start-menu-actions { margin-top: .65rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; }
-.menu-button, .round-menu-button { min-height: 42px; display: grid; place-items: center; padding: .55rem .65rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.56); color: var(--ink); font-size: .68rem; font-weight: 800; text-align: center; text-decoration: none; cursor: pointer; }
+.start-menu-actions { margin-top: .65rem; display: grid; grid-template-columns: .95fr 1.1fr .95fr; gap: .45rem; }
+.menu-button, .round-menu-button { min-height: 42px; display: grid; place-items: center; padding: .55rem .55rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.56); color: var(--ink); font-size: .68rem; font-weight: 800; text-align: center; text-decoration: none; white-space: nowrap; cursor: pointer; }
 .round-menu-button { width: 100%; margin-top: .5rem; background: transparent; color: var(--muted); }
 
 .swing-panel { width: min(540px, calc(100% - 2rem)); position: absolute; z-index: 8; left: 50%; bottom: max(1.25rem, env(safe-area-inset-bottom)); padding: 1rem 1.2rem; border-radius: 22px; background: rgba(36,36,38,.92); color: white; box-shadow: var(--shadow); transform: translateX(-50%); }

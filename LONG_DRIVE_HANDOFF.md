@@ -34,12 +34,12 @@ If the working tree is committed later, replace the uncommitted-work warning wit
 
 Current preview:
 
-[http://127.0.0.1:4173/sloppy-golf/?v=230](http://127.0.0.1:4173/sloppy-golf/?v=230)
+[http://127.0.0.1:4173/sloppy-golf/?v=231](http://127.0.0.1:4173/sloppy-golf/?v=231)
 
 Current asset versions in `sloppy-golf/index.html`:
 
-- `long-drive.css?v=49`
-- `long-drive.js?v=230`
+- `long-drive.css?v=50`
+- `long-drive.js?v=231`
 
 Always give the user the localhost URL in exactly this Markdown format after an update:
 
@@ -77,6 +77,8 @@ The game title is **Sloppy Golf**. The user supplied `SloppyGolfDraft.png` and `
 Version 229 completes the requested code/performance/progression/extreme-shot audit and stops before gameplay release changes. Stored numeric progression and round-history values are validated before use, and expensive golfer inventory logs run only in diagnostics/source-preview modes. Diagnostics now record per-drive heap and renderer-resource snapshots. An isolated progression regression proves the reveal order `Level Up → Driver Unlock → Rank Up → Round Summary` and proves both Steady and Competition remain following-round equipment changes. OOB flight uses adaptive swept terrain sampling so a fast ball cannot cross a narrow hill crest between endpoint checks. Severe-miss camera framing checks the full camera-to-ball corridor, moves inward to look around a blocking palm, then adds bounded terrain/canopy lift only if needed. Physics balance, wind, scoring and progression constants are unchanged. Full evidence is in `tests/v229-release-audit.md`; deterministic coverage is in `tests/v229-release-audit-harness.js`.
 
 Release packaging now uses `tools/build-pages.mjs` and `.github/workflows/deploy-pages.yml`. Version 230 moves the complete game source and media under `sloppy-golf/`, producing the clean public address `/sloppy-golf/`; the root `long-drive.html` is now only a lightweight bookmark redirect. The build creates an explicit runtime-only `_site/` artifact for GitHub Pages. It includes the EverElms website, Song Starter page, Sloppy Golf v230, the optimized runtime golfer, derived gameplay club, active audio, and required branding. It deliberately excludes source/legacy golfer files, original texture folders, club source, audio experiments/previews, generated previews, tests, tooling, and handoff documentation. The repository `.gitignore` also keeps those large or superseded assets and local Python dependencies out of the public repository while retaining their local copies untouched. Version 230 begins a fresh `everelms-sloppy-golf-*` progression-storage namespace, so the development-era Legend save is not carried into the deployment candidate; the existing sound preference remains shared. Each visitor starts clean and retains only progress earned after playing this release. Publishing the `main` branch through the GitHub Pages Actions source will deploy this artifact to the existing `www.everelmsstudio.com` custom domain.
+
+Version 231 fixes the narrow-phone title-card control row discovered immediately after release: all three labels stay on one line, with a modestly wider centre column for `Reset progress` and slightly tighter horizontal button padding. Gameplay and saved progress are unchanged.
 
 ## Core game loop
 
@@ -629,4 +631,4 @@ Before release preparation, have the player judge the v229 severe-miss camera an
 
 Use this text in the new Codex conversation:
 
-> Continue development of Sloppy Golf in `C:\Users\jiann\OneDrive\Documents\Website\sloppy-golf`. First read `C:\Users\jiann\OneDrive\Documents\Website\LONG_DRIVE_HANDOFF.md` completely, inspect `git status --short` and the current files, then open and play the current v230 build. Summarize your understanding before changing anything. Preserve all existing uncommitted work and continue incrementally with mobile-first testing.
+> Continue development of Sloppy Golf in `C:\Users\jiann\OneDrive\Documents\Website\sloppy-golf`. First read `C:\Users\jiann\OneDrive\Documents\Website\LONG_DRIVE_HANDOFF.md` completely, inspect `git status --short` and the current files, then open and play the current v231 build. Summarize your understanding before changing anything. Preserve all existing uncommitted work and continue incrementally with mobile-first testing.
